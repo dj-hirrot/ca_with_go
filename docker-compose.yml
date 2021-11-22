@@ -1,0 +1,35 @@
+version: "3"
+services:
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    container_name: ca_with_go_api
+    ports:
+      - 8080:8080
+    volumes:
+      - ./:/src
+    tty: true
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+  mysql:
+    build:
+      context: .
+      dockerfile: ./docker/db/mysql/Dockerfile
+    container_name: ca_with_go_mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./docker/db:/docker-entrypoint-initdb.d
+      - ./docker/db/mysql/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: cawithgo
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
