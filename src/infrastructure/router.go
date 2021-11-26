@@ -9,7 +9,7 @@ import (
 )
 
 // @title Clean Architecture with Go
-// @version 1.0
+// @version 1.0.0
 // @description This is a Go API server template.
 
 // @contact.name Hiroto Shibutani
