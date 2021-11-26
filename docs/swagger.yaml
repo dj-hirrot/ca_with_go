@@ -1,0 +1,192 @@
+basePath: /v1
+definitions:
+  controller.Error:
+    properties:
+      message:
+        type: string
+    type: object
+  domain.User:
+    properties:
+      age:
+        type: integer
+      id:
+        type: integer
+      name:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: hirotoshibutani@gmail.com
+    name: Hiroto Shibutani
+    url: https://github.com/dj-hirrot
+  description: This is a Go API server template.
+  title: Clean Architecture with Go
+  version: "1.0"
+paths:
+  /users:
+    get:
+      consumes:
+      - application/json
+      description: Get all users
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/domain.User'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controller.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controller.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controller.Error'
+      summary: List users
+      tags:
+      - users
+    post:
+      consumes:
+      - application/json
+      description: Create user by body
+      parameters:
+      - description: User attributes
+        in: body
+        name: parameter
+        required: true
+        schema:
+          $ref: '#/definitions/domain.User'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controller.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controller.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controller.Error'
+      summary: Create user
+      tags:
+      - users
+  /users/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete user by body
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/domain.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controller.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controller.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controller.Error'
+      summary: Delete user
+      tags:
+      - users
+    get:
+      consumes:
+      - application/json
+      description: Get user by ID
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/domain.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controller.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controller.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controller.Error'
+      summary: Show an user
+      tags:
+      - users
+    put:
+      consumes:
+      - application/json
+      description: Update user by body
+      parameters:
+      - description: User ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: User attributes
+        in: body
+        name: parameter
+        required: true
+        schema:
+          $ref: '#/definitions/domain.User'
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+          schema:
+            $ref: '#/definitions/domain.User'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controller.Error'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controller.Error'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/controller.Error'
+      summary: Update user
+      tags:
+      - users
+swagger: "2.0"
