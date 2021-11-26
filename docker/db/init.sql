@@ -1,4 +1,3 @@
----- create ----
 CREATE DATABASE IF NOT EXISTS cawithgo;
 
 USE cawithgo;
@@ -6,10 +5,9 @@ USE cawithgo;
 CREATE TABLE IF NOT EXISTS users (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     name VARCHAR(255) NOT NULL,
-    age INT NOT NULL,
+    age INT NOT NULL
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
----- insert ----
 insert into
     users(name, age)
 values
