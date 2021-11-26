@@ -5,7 +5,7 @@ import (
 
 	"github.com/dj-hirrot/ca_with_go/src/interface/controller"
 	"github.com/labstack/echo/v4"
-	echoSwagger "github.com/swaggo/echo-swagger"
+	es "github.com/swaggo/echo-swagger"
 )
 
 // @title Clean Architecture with Go
@@ -38,7 +38,7 @@ func Init() {
 		}
 	}
 
-	e.GET("/swagger/*", echoSwagger.WrapHandler)
+	e.GET("/swagger/*", es.WrapHandler)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }
